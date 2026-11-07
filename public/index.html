@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pavan Shreyas | School Fee Payment Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand-mark">PS</div>
+    <div class="brand-copy"><strong>PAVAN SHREYAS</strong><span>FEE MANAGEMENT</span></div>
+    <div class="side-label">WORKSPACE</div>
+    <button class="nav-link active" data-page="dashboard"><span>▦</span> Dashboard</button>
+    <button class="nav-link" data-page="students"><span>♙</span> Students</button>
+    <button class="nav-link" data-page="fees"><span>₹</span> Fee Details</button>
+    <button class="nav-link" data-page="payments"><span>↗</span> Payments</button>
+    <button class="nav-link" data-page="reports"><span>▤</span> Reports</button>
+    <div class="sidebar-bottom"><div class="avatar">PS</div><div><strong>Pavan Shreyas</strong><small>Administrator</small></div></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><span class="eyebrow">SCHOOL ADMINISTRATION</span><h1 id="page-title">Dashboard</h1></div>
+      <div class="topbar-right"><span class="status-dot"></span><span>System Online</span><div class="top-avatar">PS</div></div>
+    </header>
+
+    <section id="dashboard-page" class="page active">
+      <div class="welcome-row"><div><h2>Welcome back, Pavan Shreyas</h2><p>Here’s an overview of your school fee activity.</p></div><span class="date-chip" id="today-date"></span></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-top"><span>Total Students</span><span class="stat-icon blue">♙</span></div><strong id="total-students">0</strong><small>Registered students</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Total Fees Assigned</span><span class="stat-icon violet">₹</span></div><strong id="total-fees">₹0</strong><small>Across all fee records</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Total Collected</span><span class="stat-icon green">↗</span></div><strong id="total-paid">₹0</strong><small>Payments received</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Pending Amount</span><span class="stat-icon orange">◷</span></div><strong id="total-pending">₹0</strong><small>Amount yet to be paid</small></article>
+      </div>
+      <div class="content-card"><div class="card-heading"><div><h3>Quick actions</h3><p>Choose a task to manage fee records.</p></div></div>
+        <div class="quick-grid">
+          <button class="quick-action" data-go="students"><span class="quick-icon blue">＋</span><span><b>Add Student</b><small>Register a student</small></span><span class="arrow">→</span></button>
+          <button class="quick-action" data-go="fees"><span class="quick-icon violet">₹</span><span><b>Assign Fee</b><small>Create a fee record</small></span><span class="arrow">→</span></button>
+          <button class="quick-action" data-go="payments"><span class="quick-icon green">↗</span><span><b>Record Payment</b><small>Save a fee payment</small></span><span class="arrow">→</span></button>
+          <button class="quick-action" data-go="reports"><span class="quick-icon orange">▤</span><span><b>View Reports</b><small>Check student balances</small></span><span class="arrow">→</span></button>
+        </div>
+      </div>
+      <div class="content-card"><div class="card-heading"><div><h3>How fee tracking works</h3><p>Each fee record is linked to a student. Payments reduce its outstanding balance.</p></div></div>
+        <div class="info-strip"><span>01</span><div><b>Register students</b><small>Save name, class, roll number and contact details.</small></div><span>02</span><div><b>Assign fees</b><small>Set academic year, fee type, amount and due date.</small></div><span>03</span><div><b>Record payments</b><small>Record full or partial payments and receipt numbers.</small></div></div>
+      </div>
+    </section>
+
+    <section id="students-page" class="page">
+      <div class="section-intro"><div><h2>Student records</h2><p>Add and maintain student information.</p></div><button class="primary-btn" id="add-student-btn">＋ Add Student</button></div>
+      <div class="content-card">
+        <div class="toolbar"><input id="student-search" class="search-input" placeholder="Search by name, class or roll number..."><span class="record-count" id="student-count">0 students</span></div>
+        <div class="table-wrap"><table><thead><tr><th>ID</th><th>STUDENT NAME</th><th>CLASS</th><th>ROLL NO.</th><th>PHONE</th><th>EMAIL</th><th>ACTION</th></tr></thead><tbody id="students-table"></tbody></table></div>
+      </div>
+      <div class="content-card form-card hidden" id="student-form-card"><div class="card-heading"><div><h3 id="student-form-title">Add student</h3><p>Fields marked * are required.</p></div><button class="close-btn" data-close="student-form-card">×</button></div>
+        <form id="student-form" class="form-grid">
+          <input type="hidden" id="student-id">
+          <label>Student name *<input id="student-name" required maxlength="100" placeholder="Enter full name"></label>
+          <label>Class *<input id="student-class" required maxlength="30" placeholder="e.g. 10th"></label>
+          <label>Roll number *<input id="student-roll" required maxlength="30" placeholder="e.g. 101"></label>
+          <label>Phone<input id="student-phone" maxlength="15" placeholder="Phone number"></label>
+          <label>Email<input id="student-email" type="email" maxlength="100" placeholder="student@example.com"></label>
+          <div class="form-actions"><button type="button" class="secondary-btn" data-close="student-form-card">Cancel</button><button class="primary-btn">Save Student</button></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="fees-page" class="page">
+      <div class="section-intro"><div><h2>Fee details</h2><p>Assign fees and monitor outstanding balances.</p></div><button class="primary-btn" id="add-fee-btn">＋ Assign Fee</button></div>
+      <div class="content-card"><div class="toolbar"><input id="fee-search" class="search-input" placeholder="Search student or fee type..."><span class="record-count" id="fee-count">0 records</span></div>
+        <div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>CLASS / ROLL</th><th>ACADEMIC YEAR</th><th>FEE TYPE</th><th>TOTAL</th><th>PAID</th><th>BALANCE</th><th>DUE DATE</th></tr></thead><tbody id="fees-table"></tbody></table></div>
+      </div>
+      <div class="content-card form-card hidden" id="fee-form-card"><div class="card-heading"><div><h3>Assign a fee</h3><p>Create a fee record for a registered student.</p></div><button class="close-btn" data-close="fee-form-card">×</button></div>
+        <form id="fee-form" class="form-grid">
+          <label>Student *<select id="fee-student" required><option value="">Select student</option></select></label>
+          <label>Academic year *<input id="academic-year" required placeholder="2026-2027"></label>
+          <label>Fee type *<select id="fee-type" required><option value="">Select fee type</option><option>Tuition Fee</option><option>Admission Fee</option><option>Examination Fee</option><option>Transport Fee</option><option>Library Fee</option><option>Other</option></select></label>
+          <label>Total amount (₹) *<input id="fee-amount" type="number" min="0.01" step="0.01" required placeholder="e.g. 15000"></label>
+          <label>Due date *<input id="fee-due" type="date" required></label>
+          <div class="form-actions"><button type="button" class="secondary-btn" data-close="fee-form-card">Cancel</button><button class="primary-btn">Assign Fee</button></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="payments-page" class="page">
+      <div class="section-intro"><div><h2>Payment records</h2><p>Record student payments and keep receipt details.</p></div><button class="primary-btn" id="add-payment-btn">＋ Record Payment</button></div>
+      <div class="content-card"><div class="toolbar"><input id="payment-search" class="search-input" placeholder="Search by student or receipt number..."><span class="record-count" id="payment-count">0 payments</span></div>
+        <div class="table-wrap"><table><thead><tr><th>RECEIPT NO.</th><th>STUDENT</th><th>FEE TYPE</th><th>AMOUNT PAID</th><th>PAYMENT DATE</th><th>METHOD</th></tr></thead><tbody id="payments-table"></tbody></table></div>
+      </div>
+      <div class="content-card form-card hidden" id="payment-form-card"><div class="card-heading"><div><h3>Record a payment</h3><p>Only the remaining balance can be collected.</p></div><button class="close-btn" data-close="payment-form-card">×</button></div>
+        <form id="payment-form" class="form-grid">
+          <label>Fee record *<select id="payment-fee" required><option value="">Select fee record</option></select></label>
+          <label>Amount paid (₹) *<input id="payment-amount" type="number" min="0.01" step="0.01" required placeholder="Enter amount"></label>
+          <label>Payment date *<input id="payment-date" type="date" required></label>
+          <label>Payment method *<select id="payment-method" required><option value="">Select method</option><option>Cash</option><option>UPI</option><option>Card</option><option>Bank Transfer</option><option>Cheque</option></select></label>
+          <label>Receipt number *<input id="receipt-no" required maxlength="50" placeholder="e.g. RCPT-001"></label>
+          <div class="form-actions"><button type="button" class="secondary-btn" data-close="payment-form-card">Cancel</button><button class="primary-btn">Save Payment</button></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="reports-page" class="page">
+      <div class="section-intro"><div><h2>Student fee reports</h2><p>Review total fee, collected amount and pending balance.</p></div><button class="secondary-btn" id="export-report">↓ Export CSV</button></div>
+      <div class="content-card"><div class="toolbar"><input id="report-search" class="search-input" placeholder="Search student, class or fee type..."><span class="record-count" id="report-count">0 rows</span></div>
+        <div class="table-wrap"><table><thead><tr><th>STUDENT</th><th>CLASS / ROLL</th><th>ACADEMIC YEAR</th><th>FEE TYPE</th><th>TOTAL</th><th>PAID</th><th>BALANCE</th><th>STATUS</th></tr></thead><tbody id="reports-table"></tbody></table></div>
+      </div>
+    </section>
+    <footer>© 2026 <b>Pavan Shreyas</b> · School Fee Payment Management System</footer>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
